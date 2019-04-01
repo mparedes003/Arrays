@@ -78,8 +78,16 @@ char *arr_read(Array *arr, int index)
 {
 
   // Throw an error if the index is greater than the current count
-
+  if (index > arr->count)
+  {
+    // NOTE: stderr is a pointer to the standard error output stream
+    // NOTE: fprintf writes formatted text to the output stream you specify, which
+    // in this case is stderr
+    fprintf(stderr, "index is out of range. \n");
+    exit(1);
+  }
   // Otherwise, return the element at the given index
+  return arr->elements[index];
 }
 
 /*****
@@ -169,13 +177,13 @@ int main(void)
 
   // Array *arr = create_array(3);
 
-  // printf("%d",arr->count == 0);
-  // printf("%d",arr->capacity == 3);
+  // printf("%d", arr->count == 0);
+  // printf("%d", arr->capacity == 3);
 
-  // printf("%d",arr_read(arr, 0) == NULL);
+  // printf("%d", arr_read(arr, 0) == NULL);
 
   // arr_append(arr, "VALUE-1");
 
-  return 0;
+  // return 0;
 }
 #endif
