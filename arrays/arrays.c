@@ -96,7 +96,7 @@ char *arr_read(Array *arr, int index)
 {
 
   // Throw an error if the index is greater than the current count
-  if (index > arr->count)
+  if (index >= arr->count)
   {
     // NOTE: stderr is a pointer to the standard error output stream
     // NOTE: fprintf writes formatted text to the output stream you specify, which
