@@ -175,12 +175,34 @@ void arr_remove(Array *arr, char *element)
 
   // Search for the first occurence of the element and remove it.
   // Don't forget to free its memory!
+  int i = 0;
+  while (i < arr->count)
+  {
+    if (arr->elements[i] == element)
+    {
+      arr->elements[i] = NULL;
+      free(arr->elements[i]);
+      break;
+    }
+    i++;
+  }
 
   // Throw an error if the value is not found.
+  if (i == arr->count)
+  {
+    fprintf(stderr, "element not found.\n");
+    exit(1);
+  }
 
   // Shift over every element after the removed element to the left one position
+  while (i < arr->count)
+  {
+    arr->elements[i] = arr->elements[i + 1];
+    i++;
+  }
 
   // Decrement count by 1
+  arr->count--;
 }
 
 /*****
@@ -210,8 +232,8 @@ int main(void)
   arr_append(arr, "STRING4");
   arr_insert(arr, "STRING2", 0);
   arr_insert(arr, "STRING3", 1);
-  // arr_print(arr);
-  // arr_remove(arr, "STRING3");
+  arr_print(arr);
+  arr_remove(arr, "STRING3");
   arr_print(arr);
 
   destroy_array(arr);
