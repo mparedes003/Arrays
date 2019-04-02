@@ -126,10 +126,17 @@ void arr_append(Array *arr, char *element)
 
   // Resize the array if the number of elements is over capacity
   // or throw an error if resize isn't implemented yet.
+  if (arr->count == arr->capacity)
+  {
+    resize_array(arr);
+  }
 
   // Copy the element and add it to the end of the array
+  char *new_element = element;
+  arr->elements[arr->count] = new_element;
 
   // Increment count by 1
+  arr->count++;
 }
 
 /*****
@@ -175,7 +182,7 @@ int main(void)
   Array *arr = create_array(1);
 
   // arr_insert(arr, "STRING1", 0);
-  // arr_append(arr, "STRING4");
+  arr_append(arr, "STRING4");
   // arr_insert(arr, "STRING2", 0);
   // arr_insert(arr, "STRING3", 1);
   // arr_print(arr);
@@ -185,16 +192,5 @@ int main(void)
   destroy_array(arr);
 
   return 0;
-
-  // Array *arr = create_array(3);
-
-  // printf("%d", arr->count == 0);
-  // printf("%d", arr->capacity == 3);
-
-  // printf("%d", arr_read(arr, 0) == NULL);
-
-  // arr_append(arr, "VALUE-1");
-
-  // return 0;
 }
 #endif
