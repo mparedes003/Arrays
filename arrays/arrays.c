@@ -41,10 +41,10 @@ void destroy_array(Array *arr)
 {
   // Iterate over the array until i is less than the count
   // Free the arrays inside each index of the elements array
-  for (int i = 0; i < arr->count; i++)
-  {
-    free(arr->elements[i]);
-  }
+  // for (int i = 0; i < arr->count; i++)
+  // {
+  //   free(arr->elements[i]);
+  // }
 
   // Free all elements
   // the elements array
@@ -102,7 +102,7 @@ char *arr_read(Array *arr, int index)
     // NOTE: fprintf writes formatted text to the output stream you specify, which
     // in this case is stderr
     fprintf(stderr, "index is out of range. \n");
-    exit(1);
+    return NULL;
   }
   // Otherwise, return the element at the given index
   return arr->elements[index];
