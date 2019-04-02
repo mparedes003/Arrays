@@ -139,7 +139,9 @@ void arr_append(Array *arr, char *element)
   }
 
   // Copy the element and add it to the end of the array
-  char *new_element = element;
+  // Use strdup to create a duplicate of the element
+  // just in case the original element is deleted
+  char *new_element = strdup(element);
   arr->elements[arr->count] = new_element;
 
   // Increment count by 1
